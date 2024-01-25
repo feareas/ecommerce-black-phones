@@ -1,0 +1,150 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #e554cf; /* Cor de fundo do corpo da página */
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  .header-container {
+    width: 100%;
+    background-color: #333; /* Nova cor para o cabeçalho */
+    color: #fff; /* Cor do texto no cabeçalho */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px; /* Adicionado espaçamento interno ao cabeçalho */
+  }
+  
+  
+  .site-title {
+    margin: 0;
+  }
+  
+  .header-sections {
+    display: flex;
+    align-items: center;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+  }
+  
+  nav ul li {
+    margin-right: 20px;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #fff; /* Cor dos links no cabeçalho */
+    font-weight: bold;
+  }
+  
+  .cart-icon {
+    cursor: pointer;
+  }
+  .search-box {
+    display: flex;
+    margin-right: 20px;
+  }
+  
+  .search-box input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 4px;
+  }
+  
+  .search-box button {
+    background-color: #e44d26;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .cart-icon {
+    cursor: pointer;
+    margin-left: 20px; /* Adicionado espaçamento entre o carrinho e o "contact" */
+    color: #fff; /* Adicione essa linha para garantir que o ícone tenha a cor branca */
+  }
+  main {
+    padding: 20px;
+  }
+  
+  .banner {
+    width: 100%;
+    height: 200px; /* Defina a altura desejada */
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .banner-container {
+    display: flex;
+    width: 800%; /* Ajuste conforme o número de imagens */
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .products {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: #fff; /* Fundo dos cards de branco */
+    padding: 20px;
+  }
+  
+  .product {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    width: 45%;
+    background-color: #fff; /* Fundo dos cards de branco */
+  }
+  
+  .product img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .price {
+    font-weight: bold;
+    color: #e44d26;
+  }
+  
+  button {
+    background-color: #e44d26;
+    color: #fff;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #333;
+  }
+  
+  footer {
+    background-color: #555; /* Nova cor para o rodapé */
+    color: #fff; /* Cor do texto no rodapé */
+    padding: 10px;
+    text-align: center;
+  }
+  

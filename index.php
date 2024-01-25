@@ -4,84 +4,78 @@ require_once('Ler.php');
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loja Black Phones</title>
-  <link rel="stylesheet" href="estilos/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Black Iphones</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
-
 <body>
-
-  <div class="container">
-
-    <div class="row">
-
-      <div class="col-md-12">
-
-        <h1>Loja Black Phones</h1>
-
-        <div class="row">
-
-          <div class="col-md-3">
-
-            <h2>Categorias</h2>
-
-            <ul>
-              <li><a href="#">Celulares</a></li>
-              <li><a href="#">Computadores</a></li>
-              <li><a href="#">Eletrodomésticos</a></li>
-            </ul>
-
-          </div>
-
-          <div class="col-md-9">
-
-            <?php
-            $ler = new Ler();
-            $resultados = $ler->Leitura('produtos', 'ORDER BY data DESC');
-            
-            if ($resultados) {
-              foreach ($resultados as $produto) {
-                $produto = (object) $produto;
-            ?>
-
-              <div class="produto">
-
-                <img src="<?= HOME ?>/uploads/<?= $produto->foto ?>" alt="<?= $produto->nome ?>">
-
-                <h2><?= $produto->nome ?></h2>
-
-                <p>R$<?= $produto->preco ?></p>
-
-                <!-- Adicione aqui qualquer outra informação que desejar mostrar -->
-
-              </div>
-
-            <?php
-              }
-            } else {
-            ?>
-
-              <h3>Nenhum produto encontrado</h3>
-
-            <?php
-            }
-            ?>
-
-          </div>
-
+  <header>
+    <div class="header-container">
+      <div class="header-sections">
+        <h1 class="site-title">Black Iphones</h1>
+        <div class="search-box">
+          <input type="text" placeholder="Buscar...">
+          <button><i class="fas fa-search"></i></button>
         </div>
-
+        <nav>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <div class="cart-icon" onclick="goToCart()">
+                <i class="fas fa-shopping-cart"></i>
+              </div>
+          </ul>
+        </nav>
       </div>
-
     </div>
+  </header>
 
-  </div>
+  <main class="container">
+    <section class="banner">
+      <div class="banner-container" id="bannerContainer">
+        <!-- Adicione imagens ao contêiner do scroll -->
+        <img src="images/iphone 1.jpg" alt="Banner 1">
+        <img src="images/iphone 2.jpg" alt="Banner 2">
+        <img src="images/iphone 3.jpg" alt="Banner 3">
+        <img src="images/iphone 4.jpg" alt="Banner 4">
+        <img src="images/iphone 5.png" alt="Banner 5">
+        <img src="images/iphone 6.png" alt="Banner 6">
+        <img src="images/iphone 7.jpg" alt="Banner 7">
+        <img src="images/iphone 8.jpg" alt="Banner 8">
+      </div>
+    </section>
+  </main>
+ 
 
+
+    <!-- Sua seção de produtos permanece inalterada -->
+
+    <section class="products">
+      <article class="product" id="product1">
+        <img src="images/iphone 2.jpg" alt="Product 1">
+        <h2>Product 1</h2>
+        <p class="price">$50.00</p>
+        <button onclick="addToCart('Product 1', 50, 'product1')">Add to Cart</button>
+      </article>
+
+      <article class="product" id="product2">
+        <img src="images/iphone 3.jpg" alt="Product 2">
+        <h2>Product 2</h2>
+        <p class="price">$40.00</p>
+        <button onclick="addToCart('Product 2', 40, 'product2')">Add to Cart</button>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2022 Black Iphones. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
-
 </html>
