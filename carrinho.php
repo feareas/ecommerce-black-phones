@@ -1,26 +1,24 @@
 <?php
-require_once('config.php');
-require_once('Ler.php'); 
+session_start(); // Inicia a sessão
+$cart = $_SESSION['cart']; // Obtém o carrinho da sessão
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shopping Cart</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>Carrinho</title>
+  <link rel="stylesheet" href="estilos/styles.css">
 </head>
 <body>
   <header>
-    <div class="container">
-      <h1>Your E-commerce</h1>
+    <div class="header-container">
       <div class="header-sections">
+        <h1 class="site-title">Carrinho</h1>
         <nav>
           <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="shop.html">Shop</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="index.php">Home</a></li>
           </ul>
         </nav>
       </div>
@@ -29,13 +27,25 @@ require_once('Ler.php');
 
   <main class="container">
     <section class="cart">
-      <h2>Shopping Cart</h2>
-      <ul id="cart-items"></ul>
-      <p>Total: $<span id="cart-total">0.00</span></p>
-      <button onclick="checkout()">Checkout</button>
+      <h2>Itens no Carrinho</h2>
+      <ul id="cart-items">
+        <?php foreach ($cart as $item): ?>
+          <li>
+            <?= $item['name'] ?>: R$<?= $item['price'] ?> x <?= $item['quantity'] ?>
+            <button onclick="removeFromCart('<?= $item['id'] ?>')">Remover</button>
+            <!-- Adiciona um campo de input para a quantidade -->
+            <input type="number" value="<?= $item['quantity'] ?>" min="1" onchange="updateQuantity('<?= $item['id'] ?>', this.value)">
+          </li>
+        <?php endforeach; ?>
+      </ul>
+      <p>Total: R$<span id="cart-total"><?= array_sum(array_column($cart, 'price')) ?></span></p>
     </section>
   </main>
 
-  <script src="script.js"></script>
+  <footer>
+    <p>© 2022 Black Iphones. All rights reserved.</p>
+  </footer>
+
+  <script src="js/script.js"></script>
 </body>
 </html>

@@ -1,3 +1,12 @@
+<?php
+require_once('config.php');
+require_once('Ler.php');
+
+$ler = new Ler();
+$ler->Leitura('produtos', "ORDER BY data DESC");
+$resultados = $ler->getResultado();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -36,6 +45,53 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Salvar</button>
             </form>
+        </div>
+    </div>
+
+    <hr class="my-5">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="mb-4">Lista de Produtos</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Preço</th>
+                        <th>Foto</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if ($resultados) {
+                        foreach ($resultados as $produto) {
+                            $produto = (object) $produto;
+
+                    ?>
+                            <tr>
+                                <td><?= $produto->id ?></td>
+                                <td><?= $produto->nome ?></td>
+                                <td>R$<?= $produto->preco ?></td>
+                                <td><img src="<?= HOME ?>/uploads/<?= $produto->foto ?>" alt="<?= $produto->nome ?>" style="max-width: 100px;"></td>
+                                <td>
+                                    <a href="editar_produto.php?id=<?= $produto->id ?>" class="btn btn-warning">Editar</a>
+                                    <a href="excluir_produto.php?id=<?= $produto->id ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir este produto?')">Excluir</a>
+                                </td>
+                            </tr>
+                    <?php
+                        }
+                    } else {
+                    ?>
+                        <tr>
+                            <td colspan="5">Nenhum produto encontrado</td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
         </div>
     </div>
 
