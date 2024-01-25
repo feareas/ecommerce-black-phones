@@ -47,6 +47,30 @@ if ($result->num_rows == 0) {
     echo "A tabela produtos já existe<br>";
 }
 
+// Verifica se a tabela carrinho existe
+$sqlVerificaTabelaCarrinho = "SHOW TABLES LIKE 'carrinho'";
+$resultCarrinho = $conexao->query($sqlVerificaTabelaCarrinho);
+
+if ($resultCarrinho->num_rows == 0) {
+    // A tabela não existe, crie-a
+    $sqlCriarTabelaCarrinho = "CREATE TABLE carrinho (
+        id INT NOT NULL AUTO_INCREMENT,
+        usuario_id INT,
+        produto_id INT,
+        quantidade INT,
+        PRIMARY KEY (id),
+        FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
+        FOREIGN KEY (produto_id) REFERENCES produtos(id)
+    );";
+    if ($conexao->query($sqlCriarTabelaCarrinho) === TRUE) {
+        echo "Tabela carrinho criada com sucesso<br>";
+    } else {
+        die("Erro ao criar tabela carrinho: " . $conexao->error);
+    }
+} else {
+    echo "A tabela carrinho já existe<br>";
+}
+
 // Fecha a conexão
 $conexao->close();
 
