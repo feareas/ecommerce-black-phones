@@ -1,7 +1,10 @@
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
-  background-color: #e554cf; /* Cor de fundo do corpo da página */
+  background-color: #e554cf;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .container {
@@ -10,20 +13,22 @@ body {
   align-items: center;
   flex-direction: column;
   padding: 20px;
+  flex: 1;
 }
 
 .header-container {
   width: 100%;
-  background-color: #333; /* Nova cor para o cabeçalho */
-  color: #fff; /* Cor do texto no cabeçalho */
+  background-color: #333;
+  color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px; /* Adicionado espaçamento interno ao cabeçalho */
+  padding: 10px 20px;
 }
 
 .site-title {
   margin: 0;
+  margin-right: 20px; /* Adicionando espaçamento à direita do título */
 }
 
 .header-sections {
@@ -43,7 +48,7 @@ nav ul li {
 
 nav a {
   text-decoration: none;
-  color: #fff; /* Cor dos links no cabeçalho */
+  color: #fff;
   font-weight: bold;
 }
 
@@ -74,32 +79,12 @@ nav a {
 
 .cart-icon {
   cursor: pointer;
-  margin-left: 20px; /* Adicionado espaçamento entre o carrinho e o "contact" */
-  color: #fff; /* Adicione essa linha para garantir que o ícone tenha a cor branca */
+  margin-left: 20px;
+  color: #fff;
 }
 
 main {
   padding: 20px;
-}
-
-.banner {
-  width: 100%;
-  height: 200px; /* Defina a altura desejada */
-  overflow: hidden;
-  position: relative;
-  margin-bottom: 20px;
-}
-
-.banner-container {
-  display: flex;
-  width: 800%; /* Ajuste conforme o número de imagens */
-  transition: transform 0.5s ease-in-out;
-}
-
-.banner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .products {
@@ -107,8 +92,8 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  background-color: #fff; /* Fundo dos cards de branco */
-  padding: 20px;
+  background-color: #fff;
+  padding: 10px;
 }
 
 .product {
@@ -116,20 +101,19 @@ main {
   padding: 10px;
   text-align: center;
   margin-bottom: 20px;
-  width: 45%;
-  background-color: #fff; /* Fundo dos cards de branco */
-  height: 400px; /* Altura fixa para todos os elementos .product */
+  width: calc(33.33% - 20px);
+  background-color: #fff;
+  max-width: 250px;
 }
 
 .product img {
   width: 100%;
-  height: 80%; /* Ajuste a altura conforme necessário para atender aos seus requisitos */
-  object-fit: contain; /* Mantém a proporção da imagem e evita distorções */
+  height: 60%;
+  object-fit: contain;
   display: block;
-  margin: 0 auto; /* Centraliza a imagem horizontalmente */
+  margin: 0 auto;
 }
 
-/* Adicione este estilo para centralizar os produtos quando a largura da tela for menor */
 @media (max-width: 768px) {
   .products {
     flex-direction: column;
@@ -141,7 +125,9 @@ main {
     padding: 10px;
     text-align: center;
     margin-bottom: 20px;
-    background-color: #fff; /* Fundo dos cards de branco */
+    background-color: #fff;
+    width: 100%;
+    max-width: none;
   }
 }
 
@@ -163,8 +149,9 @@ button:hover {
 }
 
 footer {
-  background-color: #555; /* Nova cor para o rodapé */
-  color: #fff; /* Cor do texto no rodapé */
+  background-color: #555;
+  color: #fff;
   padding: 10px;
   text-align: center;
+  margin-top: auto;
 }
