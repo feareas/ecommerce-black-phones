@@ -18,7 +18,4 @@ define('DB_USER', 'devmobile3');
 define('DB_PASSWORD', 'dm3@Fatec2024#');
 define('DB_DATABASE', 'devmobile3');
 
-
-require_once('./config.php');
-
 ?>

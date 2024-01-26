@@ -1,6 +1,6 @@
 <?php
 session_start(); // Inicia a sessão
-$cart = $_SESSION['cart']; // Obtém o carrinho da sessão
+$cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : []; // Obtém o carrinho da sessão ou um array vazio
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +38,11 @@ $cart = $_SESSION['cart']; // Obtém o carrinho da sessão
           </li>
         <?php endforeach; ?>
       </ul>
-      <p>Total: R$<span id="cart-total"><?= array_sum(array_column($cart, 'price')) ?></span></p>
+      <?php if (!empty($cart)): ?>
+        <p>Total: R$<span id="cart-total"><?= array_sum(array_column($cart, 'price')) ?></span></p>
+      <?php else: ?>
+        <p>Carrinho vazio</p>
+      <?php endif; ?>
     </section>
   </main>
 
