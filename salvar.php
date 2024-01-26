@@ -55,5 +55,5 @@ if(isset($_POST["nome"]) && isset($_POST["preco"])) {
 }
 
 // Redireciona para a página principal
-header("Location: index.php");
+header("Location: painel.php?add_success=" . $addSuccess . "&message=" . urlencode($mensagem));
 ?>

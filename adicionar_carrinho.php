@@ -1,5 +1,4 @@
 <?php
-
 require_once('config.php');
 
 // Verifica se o ID do produto e a quantidade foram fornecidos na solicitação
@@ -10,7 +9,7 @@ if (isset($_POST['produto_id']) && isset($_POST['quantidade'])) {
     // Obtém informações do produto
     $conexao = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
 
-    // Verifica se a conexão foi bem sucedida
+    // Verifica se a conexão foi bem-sucedida
     if ($conexao->connect_error) {
         die("Falha na conexão com o banco de dados: " . $conexao->connect_error);
     }
@@ -53,13 +52,24 @@ if (isset($_POST['produto_id']) && isset($_POST['quantidade'])) {
         $sqlAdicionarCarrinho = "INSERT INTO carrinho (produto_id, quantidade) VALUES (?, ?)";
         $stmtAdicionarCarrinho = $conexao->prepare($sqlAdicionarCarrinho);
         $stmtAdicionarCarrinho->bind_param("ii", $produto_id, $quantidade);
-        $stmtAdicionarCarrinho->execute();
-    }
 
-    // Fecha a conexão
-    $conexao->close();
+        // Executa a consulta
+        if ($stmtAdicionarCarrinho->execute()) {
+            // Mensagem de sucesso
+            $addSuccess = true;
+            $mensagem = "Produto adicionado com sucesso!";
+        } else {
+            // Mensagem de erro
+            $addSuccess = false;
+            $mensagem = "Erro ao adicionar o produto ao carrinho.";
+        }
+
+        // Fecha a conexão
+        $conexao->close();
+    }
 }
 
-// comentario teste
-
+// Redireciona para o index.php incluindo parâmetros de mensagem
+header("Location: index.php?add_success=" . $addSuccess . "&message=" . urlencode($mensagem));
+exit();
 ?>

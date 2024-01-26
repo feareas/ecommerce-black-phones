@@ -2,7 +2,15 @@
 require_once('config.php');
 require_once('Ler.php');
 
-$cart = [];
+$cartCount = 0;
+
+// Inicia a sessão
+session_start();
+
+// Verifica se há itens no carrinho na sessão
+if (isset($_SESSION['cart'])) {
+    $cartCount = count($_SESSION['cart']);
+}
 
 $ler = new Ler();
 $ler->Leitura('produtos', 'nome');
@@ -34,7 +42,7 @@ $resultados = $ler->getResultado();
             <li><a href="contact.html">Contact</a></li>
             <div class="cart-icon" onclick="goToCart()">
               <i class="fas fa-shopping-cart"></i>
-              <span id="cart-count"><?= count($cart) ?></span>
+              <span id="cart-count"><?= $cartCount ?></span>
             </div>
           </ul>
         </nav>
@@ -53,7 +61,8 @@ $resultados = $ler->getResultado();
             <img src="<?= $produto->foto ?>" alt="<?= $produto->nome ?>">
             <h2><?= $produto->nome ?></h2>
             <p class="price">R$<?= $produto->preco ?></p>
-            <button onclick="addToCart('<?= $produto->id ?>', '<?= $produto->nome ?>', <?= $produto->preco ?>)">Adicionar</button>
+            <!-- Adicionei o botão com a chamada da função addToCart -->
+            <button onclick="addToCart('<?= $produto->nome ?>', <?= $produto->preco ?>, '<?= $produto->id ?>')">Adicionar</button>
           </article>
       <?php
         }
