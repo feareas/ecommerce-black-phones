@@ -2,11 +2,10 @@
 require_once('config.php');
 require_once('Ler.php');
 
-// Inicialização da variável $cart
 $cart = [];
 
 $ler = new Ler();
-$ler->Leitura('produtos', 'nome'); // Altere 'nome' para o campo apropriado usado para ordenação
+$ler->Leitura('produtos', 'nome');
 $resultados = $ler->getResultado();
 ?>
 
@@ -54,7 +53,7 @@ $resultados = $ler->getResultado();
             <img src="<?= $produto->foto ?>" alt="<?= $produto->nome ?>">
             <h2><?= $produto->nome ?></h2>
             <p class="price">R$<?= $produto->preco ?></p>
-            <button onclick="addToCart('<?= $produto->id ?>', '<?= $produto->nome ?>', <?= $produto->preco ?>)">Adicionar ao carrinho</button>
+            <button onclick="addToCart('<?= $produto->id ?>', '<?= $produto->nome ?>', <?= $produto->preco ?>)">Adicionar</button>
           </article>
       <?php
         }
