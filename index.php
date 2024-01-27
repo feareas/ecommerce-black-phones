@@ -38,8 +38,7 @@ $resultados = $ler->getResultado();
         <nav>
           <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="shop.html">Shop</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contato.php">Contact</a></li>
             <div class="cart-icon" onclick="goToCart()">
               <i class="fas fa-shopping-cart"></i>
               <span id="cart-count"><?= $cartCount ?></span>
@@ -61,7 +60,6 @@ $resultados = $ler->getResultado();
             <img src="<?= $produto->foto ?>" alt="<?= $produto->nome ?>">
             <h2><?= $produto->nome ?></h2>
             <p class="price">R$<?= $produto->preco ?></p>
-            <!-- Adicionei o botão com a chamada da função addToCart -->
             <button onclick="addToCart('<?= $produto->nome ?>', <?= $produto->preco ?>, '<?= $produto->id ?>')">Adicionar</button>
           </article>
       <?php
@@ -73,12 +71,18 @@ $resultados = $ler->getResultado();
       }
       ?>
     </section>
+
+   
+</main>
   </main>
 
+
   <footer>
-    <p>© 2022 Black Iphones. All rights reserved.</p>
+    <p>© 2022 Black Iphones.</p>
   </footer>
 
   <script src="js/script.js"></script>
+
 </body>
 </html>
+

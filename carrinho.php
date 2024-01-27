@@ -25,25 +25,30 @@ $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : []; // Obtém o carrinho 
     </div>
   </header>
 
-  <main class="container">
-    <section class="cart">
-      <h2>Itens no Carrinho</h2>
-      <ul id="cart-items">
-        <?php foreach ($cart as $item): ?>
-          <li>
-            <?= $item['name'] ?>: R$<?= $item['price'] ?> x <?= $item['quantity'] ?>
-            <button onclick="removeFromCart('<?= $item['id'] ?>')">Remover</button>
-            <!-- Adiciona um campo de input para a quantidade -->
-            <input type="number" value="<?= $item['quantity'] ?>" min="1" onchange="updateQuantity('<?= $item['id'] ?>', this.value)">
-          </li>
-        <?php endforeach; ?>
-      </ul>
-      <?php if (!empty($cart)): ?>
-        <p>Total: R$<span id="cart-total"><?= array_sum(array_column($cart, 'price')) ?></span></p>
-      <?php else: ?>
-        <p>Carrinho vazio</p>
-      <?php endif; ?>
-    </section>
+  <div id="cart-container">
+            <h2>Carrinho</h2>
+            <ul id="cart-items">
+                <?php
+                // Adicione o código para buscar os itens do carrinho do banco de dados e exibi-los aqui
+                // Exemplo:
+                foreach ($_SESSION['cart'] as $cartItem) {
+                    echo '<li>' . $cartItem['name'] . ': R$' . $cartItem['price'] . ' x ' . $cartItem['quantity'] . '</li>';
+                }
+                ?>
+            </ul>
+            <p>Total: R$<span id="cart-total">
+                    <?php
+                    // Adicione o código para calcular o total do carrinho a partir dos dados do banco de dados
+                    // Exemplo:
+                    $total = 0;
+                    foreach ($_SESSION['cart'] as $cartItem) {
+                        $total += $cartItem['price'] * $cartItem['quantity'];
+                    }
+                    echo $total;
+                    ?>
+                </span>
+            </p>
+        </div>
   </main>
 
   <footer>
