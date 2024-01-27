@@ -61,11 +61,15 @@ if (isset($_POST['produto_id']) && isset($_POST['quantidade'])) {
         } else {
             // Mensagem de erro
             $addSuccess = false;
-            $mensagem = "Erro ao adicionar o produto ao carrinho.";
+            $mensagem = "Erro ao adicionar o produto ao carrinho: " . $stmtAdicionarCarrinho->error;
         }
 
         // Fecha a conexão
         $conexao->close();
+    } else {
+        // Mensagem de erro se o produto não for encontrado
+        $addSuccess = false;
+        $mensagem = "Produto não encontrado.";
     }
 }
 

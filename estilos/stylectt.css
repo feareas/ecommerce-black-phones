@@ -1,0 +1,140 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #e0e0e0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    flex: 1;
+  }
+  
+  .header-container {
+    width: 100%;
+    background-color: #686464;
+    color: #000000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+  
+  .site-title {
+    margin: 0;
+    margin-right: 20px;
+    font-weight: bold;
+    font-size: 1.5em;
+   
+  }
+  
+  .header-title {
+    margin: 0;
+    font-weight: bold;
+    font-size: 1.8em; /* Tamanho maior */
+    text-align: center; /* Centralizando o texto */
+    color: #000000;
+  }
+  
+  .header-sections {
+    display: flex;
+    align-items: center;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+  }
+  
+  nav ul li {
+    margin-right: 20px;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #da0101;
+    font-weight: bold;
+  }
+  
+  .cart-icon {
+    cursor: pointer;
+    margin-left: 20px;
+    color: #000000;
+  }
+  
+  main {
+    padding: 20px;
+  }
+  
+  /* Estilo para o formulário de contato fictício */
+  section {
+    background-color: #747070;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+  }
+  
+  /* Estilo para o 'quadrado' de contatos */
+  .contact-box {
+    background-color: #dadada;
+    padding: 20px; /* Aumentando o tamanho da box */
+    border-radius: 8px;
+    margin-bottom: 16px;
+    text-align: center; /* Centralizando as informações */
+    font-weight: bold;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  
+  textarea {
+    width: 95%;
+    padding: 12px;
+    border: 1px solid #e7e7e7;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 1.2em;
+  }
+  
+  button {
+    background-color: #e44d26;
+    color: #fff;
+    padding: 20px; /* Aumentando o tamanho do botão */
+    border: none;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto; /* Centralizando o botão */
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  button:hover {
+    background-color: #333;
+  }
+  
+  footer {
+    background-color: #000000;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    margin-top: auto;
+    font-size: 1.2em;
+  }
+  
+  .center {
+    text-align: center;
+  }
+  

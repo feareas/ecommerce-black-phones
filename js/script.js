@@ -1,54 +1,49 @@
 // Inicializa o carrinho da sessão, se ainda não estiver inicializado
 let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
 
+// Certifique-se de que os elementos foram encontrados antes de continuar
+const cartItems = document.getElementById('cart-items');
+const cartTotal = document.getElementById('cart-total');
+const cartCount = document.getElementById('cart-count');
+
+if (!cartItems || !cartTotal || !cartCount) {
+  console.error('Elementos do carrinho não encontrados.');
+}
+
 function addToCart(productName, price, productId) {
-  // Adiciona o produto ao carrinho com a quantidade padrão de 1
   const product = {
     id: productId,
     name: productName,
     price: price,
-    quantity: 1 // Quantidade padrão é 1
+    quantity: 1
   };
 
-  // Verifica se o produto já está no carrinho
   const existingProductIndex = cart.findIndex(item => item.id === productId);
 
   if (existingProductIndex !== -1) {
-    // Se o produto já estiver no carrinho, apenas atualiza a quantidade
     cart[existingProductIndex].quantity += 1;
   } else {
-    // Se o produto não estiver no carrinho, adiciona ao carrinho
     cart.push(product);
   }
 
-  // Atualiza o carrinho na sessão
+  // Adiciona o produto à tabela carrinho no banco de dados
+  addToDatabase(productId, 1);
+
   sessionStorage.setItem('cart', JSON.stringify(cart));
-
-  // Atualiza o número de itens no carrinho no ícone do carrinho no cabeçalho
   updateCart();
-
-  // Adiciona uma mensagem indicando que o produto foi adicionado com sucesso
   alert(`Produto "${productName}" adicionado ao carrinho com sucesso!`);
 }
 
 function updateCart() {
-  const cartItems = document.getElementById('cart-items');
-  const cartTotal = document.getElementById('cart-total');
-  const cartCount = document.getElementById('cart-count');
-
-  // Certifique-se de que os elementos foram encontrados antes de continuar
   if (!cartItems || !cartTotal || !cartCount) {
     console.error('Elementos do carrinho não encontrados.');
     return;
   }
 
-  // Obtém o carrinho da sessão
-  let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
-
   cartItems.innerHTML = '';
   let total = 0;
 
-  cart.forEach((item, index) => {
+  cart.forEach((item) => {
     const li = document.createElement('li');
     li.textContent = `${item.name}: R$${item.price.toFixed(2)} x ${item.quantity}`;
 
@@ -57,6 +52,14 @@ function updateCart() {
     removeButton.onclick = () => removeFromCart(item.id);
 
     li.appendChild(removeButton);
+
+    // Adiciona um campo de input para a quantidade
+    const quantityInput = document.createElement('input');
+    quantityInput.type = 'number';
+    quantityInput.value = item.quantity;
+    quantityInput.min = '1';
+    quantityInput.addEventListener('change', (event) => updateQuantity(item.id, event.target.value));
+    li.appendChild(quantityInput);
 
     cartItems.appendChild(li);
     total += item.price * item.quantity;
@@ -67,16 +70,37 @@ function updateCart() {
 }
 
 function removeFromCart(productId) {
-  let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
   cart = cart.filter(item => item.id !== productId);
+
+  // Remove o produto da tabela carrinho no banco de dados
+  removeFromDatabase(productId);
+
   sessionStorage.setItem('cart', JSON.stringify(cart));
   updateCart();
 }
 
-function checkout() {
-  alert('This is just a demo. No real checkout process is implemented.');
+function updateQuantity(productId, newQuantity) {
+  cart.forEach(item => {
+    if (item.id === productId) {
+      item.quantity = parseInt(newQuantity);
+    }
+  });
+
+  // Atualiza a quantidade na tabela carrinho no banco de dados
+  updateQuantityInDatabase(productId, newQuantity);
+
+  sessionStorage.setItem('cart', JSON.stringify(cart));
+  updateCart();
 }
 
-function goToCart() {
-  window.location.href = 'carrinho.php'; // Altere para o caminho correto da página de carrinho
+function addToDatabase(productId, quantity) {
+  // Adicione o código para adicionar o produto ao banco de dados aqui
+}
+
+function removeFromDatabase(productId) {
+  // Adicione o código para remover o produto do banco de dados aqui
+}
+
+function updateQuantityInDatabase(productId, newQuantity) {
+  // Adicione o código para atualizar a quantidade no banco de dados aqui
 }
